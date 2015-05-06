@@ -1,0 +1,24 @@
+<script>
+ind = "some/asd/wer/?id=5";
+	console.log(ind.substr(0, ind.indexOf("?")));
+	console.log(ind.split("?").pop());
+	
+	query = {};
+	
+	qs = ind.split("?").pop();
+	
+	p = qs.split("&");
+	if (p.length > 0) {
+		for(index in p) {
+			b = p[index];
+			c = b.split("=");
+			
+			if (c.length == 2) {
+				query[c[0]] = c[1];
+			} else if (c.length == 1) {
+				query[c[0]] = "";
+			}
+		}
+	}
+	console.log(query);
+</script>

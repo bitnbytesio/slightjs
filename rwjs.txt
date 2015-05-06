@@ -1,0 +1,55 @@
+<div id="addnew">
+    <input type="text" id="id">
+    <input type="text" id="content">
+    <input type="button" value="Add" id="submit">
+</div>
+
+<div id="check">
+    <input type="text" id="input">
+    <input type="button" value="Search" id="search">
+</div>
+
+JS (writing to the txt file):
+
+function writeToFile(d1, d2){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+    fh.WriteLine(d1 + ',' + d2);
+    fh.Close();
+}
+var submit = document.getElementById("submit");
+submit.onclick = function () {
+    var id      = document.getElementById("id").value;
+    var content = document.getElementById("content").value;
+    writeToFile(id, content);
+}
+
+checking a particular row:
+
+function readFile(){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("data.txt", 1, false, 0);
+    var lines = "";
+    while (!fh.AtEndOfStream) {
+        lines += fh.ReadLine() + "\r";
+    }
+    fh.Close();
+    return lines;
+}
+var search = document.getElementById("search");
+search.onclick = function () {
+    var input   = document.getElementById("input").value;
+    if (input != "") {
+        var text    = readFile();
+        var lines   = text.split("\r");
+        lines.pop();
+        var result;
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].match(new RegExp(input))) {
+                result = "Found: " + lines[i].split(",")[1];
+            }
+        }
+        if (result) { alert(result); }
+        else { alert(input + " not found!"); }
+    }
+}

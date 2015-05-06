@@ -1,0 +1,110 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Te Page de alo mta</title>
+	</head>
+	<body>
+	<h2 id="Page">Te Page de alo mta</h2>
+	<button class="ssl" data-title="You can drag me" data-url="/test/drag-me">Drag Me</button>
+	<button class="ssl" data-title="Dont drag me" data-url="/test/drag-out">Drag Out</button>
+	<button class="ssl" data-title="Can you drop me" data-url="/test/drop-me">Drop Me</button>
+	<button class="ssl" data-title="Never drop me" data-url="/test/drop-out">Drop Out</button>
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script>
+	
+	/*
+	var route = "/users/pictures/:uid";
+	replace = route.replace(/:[^\s/]+/g, '([\\w-]+)');
+	console.log(replace);
+	var routeMatcher = new RegExp(replace);
+	console.log(routeMatcher);
+	var url = "/users/pictures/1024/";
+	console.log(url.match(routeMatcher))
+		
+	
+	var route2 = "/users/pictures/?uid";
+	replace2 = route2.replace(/\?[^\s/]+/g, '(.*)');
+	console.log(replace2);
+	var routeMatcher2 = new RegExp(replace2);
+	console.log(routeMatcher2);
+	var url2 = "/users/pictures/";
+	console.log(url2.match(routeMatcher2));
+
+
+	var route3 = "/users/:uid/pictures/:pid";
+	replace3 = route3.replace(/:[^\s/]+/g, '([\\w-]+)');
+	console.log(replace3);
+	var routeMatcher3 = new RegExp(replace3);
+	console.log(routeMatcher3);
+	var url3 = "/users/29/pictures/1024/";
+	console.log(url3.match(routeMatcher3))
+	
+	*/
+	
+	
+	//sfnl
+	
+	/*var route4 = "/users/:uid/pictures";
+	replace4 = route4.replace(/:[^\s/]+/g, '([\\w-]+)');
+
+	replace4 = replace4.replace(/\?[^\s/]+/g, '?(.*)');
+	console.log(replace4);
+	var routeMatcher4 = new RegExp(replace4);
+	console.log(routeMatcher4);
+	var url4 = "/users/29/pictures";
+	rarr = url4.match(routeMatcher4);
+	console.log(rarr);
+	url = rarr[0];
+	sarr = rarr.slice(1);
+	narr = [];
+	for(ar in sarr) {
+		narr .push(sarr[ar]);
+	}
+	console.log("URL: " + url);
+	console.log(narr);
+	*/
+
+	url = "/users/:uid/pictures/?pid";
+	req = new RegExp("/:[^\s/]+/g");
+	(url.match(/:[^\s/]+/g));
+	console.log(url.match(/\?[^\s/]+/g));
+	
+	
+	
+	var title, url;
+	var popped = ('state' in window.history && window.history.state !== null), initialURL = location.href;
+
+		$(function(){
+			$('.ssl').click(function(){
+			
+				title = $(this).data('title');
+				url = $(this).data('url');
+			
+				if (history && history.pushState){
+					window.history.pushState(null, title, url);
+					
+				} else {
+					window.hash = url;
+				}
+		
+			});
+			
+			// fires when user click forward or backward
+			$(window).bind('popstate', function(event){
+				var initialPop = !popped && location.href == initialURL;
+				popped = true;
+				if (initialPop) {
+				console.log("initialPop");
+				console.log(initialPop);
+				return;
+				}
+
+				console.log('Popstate');
+
+				// By the time popstate has fired, location.pathname has been changed
+				console.log(location.pathname);
+			});
+		});
+	</script>
+	</body>
+</html>
