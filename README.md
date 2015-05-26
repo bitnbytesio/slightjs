@@ -5,9 +5,9 @@ Slightjs used for speed optimization.
 
 ## How to use?
 
-First attach slight.js to your web page. Make sure jquery is already atached before using slight.js (Slight depends on jquery).
+First attach slight.js to your web page. Make sure jquery is already attached before using slight.js (Slight depends on jquery).
 
-** Use the below javascript codes **
+**Use the below javascript codes**
 
 Note: make sure you have all the page avilable on your host (Used in the below script example or change according to your application)
 
@@ -80,7 +80,9 @@ Slight.listen();
 
 ```
 
-** HTML Example **
+**HTML Example**
+
+Note: Slight make ajax request to requested page or url. Make sure you have coded you page acc. to it. Avoid loading full layout page.
 
 ```html
 
